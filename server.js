@@ -127,11 +127,3 @@ function color(str,gr)
 	if(gr) return green(str);
 	return red(str);
 }
-
-
-
-
-
-
-
-
