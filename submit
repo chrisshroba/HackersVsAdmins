@@ -1,0 +1,29 @@
+#!/usr/bin/python
+
+import urllib2
+import sys
+from time import sleep
+
+def w(s):
+	sys.stdout.write(s)
+	sys.stdout.flush()
+
+def write(s):
+	for c in s:
+		if c=="\n":
+			sleep(.5)
+		w(c)
+		sleep(.025)
+
+guess=sys.argv[len(sys.argv)-1]
+#print guess
+response=urllib2.urlopen("http://54.187.43.16:8888/?terminal=0&guess="+str(guess)).read()
+
+write(response)
+
+sleep(.5)
+w("\n")
+
+
+
+
