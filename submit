@@ -3,7 +3,10 @@
 import urllib2
 import sys
 from time import sleep
-
+usage = "usage: submit your_guess"
+expected_type = "integer" # could also be string,array,etc depending on specification
+invalid_guess = "invalid guess: Your guess should be of type "+expected_type
+submit_url = "http://54.187.43.16:8888/?terminal=0&guess="
 def w(s):
 	sys.stdout.write(s)
 	sys.stdout.flush()
@@ -14,10 +17,24 @@ def write(s):
 			sleep(.5)
 		w(c)
 		sleep(.025)
+def isValid(guess):
+    """
+    Determines whether the guess is valid or not based on desired 
+    specification of gamemaster
+    """
+    global usage
+    try:
+        if len(sys.argv) != 2:
+            sys.exit(0)
+        integer_guess = int(guess)
+    except:
+        print invalid_guess
+        sys.exit(0)
+    
 
-guess=sys.argv[len(sys.argv)-1]
-#print guess
-response=urllib2.urlopen("http://54.187.43.16:8888/?terminal=0&guess="+str(guess)).read()
+guess=sys.argv[1] # we only expect one
+isValid(guess)
+response=urllib2.urlopen(submit_url+str(guess)).read()
 
 write(response)
 
