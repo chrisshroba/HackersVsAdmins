@@ -22,7 +22,6 @@ def isValid(guess):
     Determines whether the guess is valid or not based on desired 
     specification of gamemaster
     """
-    global usage
     try:
         if len(sys.argv) != 2:
             sys.exit(0)
